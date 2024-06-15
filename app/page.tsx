@@ -1,4 +1,5 @@
 import Pricing from '@/components/ui/Pricing/Pricing';
+import WorldsProblems from '@/components/ui/WorldsProblems/WorldsProblems';
 import { createClient } from '@/utils/supabase/server';
 import {
   getProducts,
@@ -15,7 +16,7 @@ export default async function PricingPage() {
   ]);
 
   return (
-    <Pricing
+    <WorldsProblems
       user={user}
       products={products ?? []}
       subscription={subscription}
