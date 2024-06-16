@@ -1,15 +1,9 @@
 'use client';
 
-import Button from '@/components/ui/Button';
-import LogoCloud from '@/components/ui/LogoCloud';
 import type { Tables } from '@/types_db';
-import { getStripe } from '@/utils/stripe/client';
-import { checkoutWithStripe } from '@/utils/stripe/server';
-import { getErrorRedirect } from '@/utils/helpers';
 import { User } from '@supabase/supabase-js';
-import cn from 'classnames';
-import { useRouter, usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import ProblemCard from '../ProblemCard';
 
 type Subscription = Tables<'subscriptions'>;
 type Product = Tables<'products'>;
@@ -30,7 +24,6 @@ interface Props {
   subscription: SubscriptionWithProduct | null;
 }
 
-type BillingInterval = 'lifetime' | 'year' | 'month';
 
 export default function WorldsProblems({ user, products, subscription }: Props) {
   const intervals = Array.from(
@@ -51,7 +44,6 @@ export default function WorldsProblems({ user, products, subscription }: Props) 
             The definitive list of problems that{' '}
             <a
               className="text-pink-500 underline"
-            //   href="https://dashboard.stripe.com/products"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -59,6 +51,7 @@ export default function WorldsProblems({ user, products, subscription }: Props) 
             </a>
             .
           </p>
+          <ProblemCard />
         </div>
       </section>
     );

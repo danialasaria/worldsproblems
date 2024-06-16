@@ -1,4 +1,3 @@
-import Pricing from '@/components/ui/Pricing/Pricing';
 import WorldsProblems from '@/components/ui/WorldsProblems/WorldsProblems';
 import { createClient } from '@/utils/supabase/server';
 import {
@@ -7,7 +6,7 @@ import {
   getUser
 } from '@/utils/supabase/queries';
 
-export default async function PricingPage() {
+export default async function WorldsProblemsPage() {
   const supabase = createClient();
   const [user, products, subscription] = await Promise.all([
     getUser(supabase),
