@@ -41,7 +41,7 @@ export default function WorldsProblems({user, problems}: Props) {
       <header className="mb-8">
         {/* <h1 className="text-3xl font-bold">The Funniest Problems College Students Face</h1> */}
         <p className="mt-2 text-gray-500 dark:text-gray-400">
-          Sign up with your edu email to contribute.
+          Sign up with your .edu email to contribute.
         </p>
       </header>
         <div className="space-y-4">

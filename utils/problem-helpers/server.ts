@@ -5,14 +5,12 @@ import { createClient } from '@/utils/supabase/server';
 export async function handleUpvote(problemId: string, userId: string) {
   const supabase = createClient();
 
-  // Insert the upvote record
   const { error: insertError } = await supabase.from('upvotes').insert({ problem_id: problemId, user_id: userId });
 
   if (insertError) {
     throw new Error(insertError.message);
   }
 
-  // Increment the upvotes_count
   const { error: updateError } = await supabase.rpc('increment_upvotes', { problem_id: problemId });
 
   if (updateError) {
@@ -23,14 +21,12 @@ export async function handleUpvote(problemId: string, userId: string) {
 export async function handleDownvote(problemId: string, userId: string) {
   const supabase = createClient();
 
-  // Insert the downvote record
   const { error: insertError } = await supabase.from('upvotes').insert({ problem_id: problemId, user_id: userId, is_upvote: false });
 
   if (insertError) {
     throw new Error(insertError.message);
   }
 
-  // Decrement the upvotes_count
   const { error: updateError } = await supabase.rpc('decrement_upvotes', { problem_id: problemId });
 
   if (updateError) {
