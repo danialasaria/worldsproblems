@@ -37,3 +37,24 @@ export const getUserDetails = cache(async (supabase: SupabaseClient) => {
     .single();
   return userDetails;
 });
+
+interface Problem {
+  id: string;
+  title: string;
+  description: string;
+  created_at: string;
+  upvotes_count: number;
+}
+
+export const getProblems = cache(async (supabase: SupabaseClient): Promise<Problem[]> => {
+  const { data, error } = await supabase
+    .from('problems')
+    .select('id, title, description, created_at, upvotes_count')
+    .order('upvotes_count', { ascending: false });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data as Problem[];
+});

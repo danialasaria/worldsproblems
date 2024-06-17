@@ -1,58 +1,56 @@
 'use client';
 
-import type { Tables } from '@/types_db';
-import { User } from '@supabase/supabase-js';
-import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import ProblemCard from '../ProblemCard';
+import { User } from '@supabase/supabase-js';
 
-type Subscription = Tables<'subscriptions'>;
-type Product = Tables<'products'>;
-type Price = Tables<'prices'>;
-interface ProductWithPrices extends Product {
-  prices: Price[];
-}
-interface PriceWithProduct extends Price {
-  products: Product | null;
-}
-interface SubscriptionWithProduct extends Subscription {
-  prices: PriceWithProduct | null;
+interface Problem {
+  id: string;
+  title: string;
+  description: string;
+  upvotes_count: number;
 }
 
 interface Props {
-  user: User | null | undefined;
-  products: ProductWithPrices[];
-  subscription: SubscriptionWithProduct | null;
+  user: User | null, 
+  problems: Problem[]
 }
 
+export default function WorldsProblems({user, problems}: Props) {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-export default function WorldsProblems({ user, products, subscription }: Props) {
-  const intervals = Array.from(
-    new Set(
-      products.flatMap((product) =>
-        product?.prices?.map((price) => price?.interval)
-      )
-    )
-  );
-  const router = useRouter();
-  const currentPath = usePathname();
-
-    return (
-      <section className="bg-black">
-        <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
-          <div className="sm:flex sm:flex-col sm:align-center"></div>
-          <p className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
-            The definitive list of problems that{' '}
-            <a
-              className="text-pink-500 underline"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              verified students face
-            </a>
-            .
-          </p>
-          <ProblemCard />
+  return (
+    <section className="bg-black">
+      <div className="max-w-6xl px-4 py-8 mx-auto sm:py-24 sm:px-6 lg:px-8">
+        <div className="sm:flex sm:flex-col sm:align-center"></div>
+        <p className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
+          The definitive list of problems that{' '}
+          <a
+            className="text-pink-500 underline"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            verified students face
+          </a>
+          .
+        </p>
+        {loading && <p>Loading...</p>}
+        {error && <p>Error: {error}</p>}
+        <main className="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+      <header className="mb-8">
+        {/* <h1 className="text-3xl font-bold">The Funniest Problems College Students Face</h1> */}
+        <p className="mt-2 text-gray-500 dark:text-gray-400">
+          A list of hilarious issues that college students can upvote.
+        </p>
+      </header>
+        <div className="space-y-4">
+          {!loading && !error && problems.map((problem) => (
+              <ProblemCard key={problem.id} problem={problem} userId={user?.id ?? ''} />
+          ))}
         </div>
-      </section>
-    );
+        </main>
+      </div>
+    </section>
+  );
 }
