@@ -21,16 +21,13 @@
 
 What do you think are the most pertinent problems students face? My friends and I started talking about this and it turned out they were much more humorous than I would have imagined. So I made a way to share them. 
 
-[![Product Name Screen Shot][product-screenshot]](ProjectScreenshot.png)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<img src="ProjectScreenshot.png" alt="Product Name Screen Shot" style="width:600px;">
 
 ### Built With
 
 * [![Next][Next.js]][Next-url]
 * [![Supabase][Supabase.io]][Supabase-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -46,21 +43,15 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTACT -->
 ## Contact
 
 Danial Asaria - [@danialasaria](https://twitter.com/danialasaria) - danialasaria@gmail.com
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 [Next.js]: https://img.shields.io/badge/Next-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
