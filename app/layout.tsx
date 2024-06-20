@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/Toasts/toaster';
 import { PropsWithChildren, Suspense } from 'react';
 import { getURL } from '@/utils/helpers';
 import 'styles/main.css';
+import { Analytics } from '@vercel/analytics/react';
 
 const title = 'Student Problems';
 const description = 'Brought to you by Danial.';
@@ -34,6 +35,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <Suspense>
           <Toaster />
         </Suspense>
+        <Analytics />
       </body>
     </html>
   );
