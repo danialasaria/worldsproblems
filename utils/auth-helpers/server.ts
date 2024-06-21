@@ -170,12 +170,13 @@ export async function signUp(formData: FormData) {
   const password = String(formData.get('password')).trim();
   let redirectPath: string;
 
-  if (!isValidEmail(email)) {
+  if (!isValidEmail(email) || !email.endsWith('.edu')) {
     redirectPath = getErrorRedirect(
       '/signin/signup',
-      'Invalid email address.',
-      'Please try again.'
+      'Invalid .edu email address.',
+      'Please try again or find a student with one.'
     );
+    return redirectPath;
   }
 
   const supabase = createClient();
