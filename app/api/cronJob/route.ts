@@ -3,9 +3,12 @@ export const dynamic = 'force-dynamic'; // static by default, unless reading the
 
 export async function GET(request: Request) {
   try {
-    await getProblems();
+    const problems = await getProblems();
+    return Response.json({ 
+      message: 'Successfully fetched problems',
+      problems: problems 
+    });
   } catch (error) {
     return Response.json({ error: (error as Error).message }, { status: 500 });
   }
-  return new Response(`We did it!`);
 }
